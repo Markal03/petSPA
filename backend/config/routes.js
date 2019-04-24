@@ -1,11 +1,14 @@
+const PetController = require('../app/controllers/pet');
+
 module.exports = (app) => {
 
-    app.get('/loadAllPets');
+    app.get('/loadAllPets', PetController.getPetsList);
 
-    app.get('/loadSinglePet/:id');
+    app.get('/loadSinglePet/:id', PetController.getSinglePet);
 
-    app.post('/addPet');
+    app.post('/addPet', PetController.addPet);
 
-    app.post('/updatePet/:pet');
+    app.post('/updatePet/:pet', PetController.updatePet);
 
+    app.delete('/deletePet/:id', PetController.deletePet);
 }

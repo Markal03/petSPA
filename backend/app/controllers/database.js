@@ -58,6 +58,21 @@ exports.getPets = () => {
     });
 };
 
+exports.getSinglePet = (id) => {
+    return new Promise((resolve, reject) => {
+        let singlePetString = `SELECT * 
+        FROM pets
+        WHERE id = ?`;
+        connection.query(singlePetString, [id], (error, result, fields) => {
+            if (error) {
+                console.log(error);
+                return reject(error);
+            }
+            return resolve(result);
+        });
+    });
+};
+
 exports.savePet = async (pet) => {
     try {
         let savePetString = `INSERT INTO pets 
