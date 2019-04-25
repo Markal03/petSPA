@@ -66,9 +66,12 @@ exports.getSinglePet = (id) => {
         connection.query(singlePetString, [id], (error, result, fields) => {
             if (error) {
                 console.log(error);
-                return reject(error);
+                reject(error);
             }
-            return resolve(result);
+            if (result.length === 0)
+                resolve(false);
+            else 
+                resolve(result[0]);
         });
     });
 };
