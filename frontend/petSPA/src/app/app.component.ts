@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PetService } from './_services/pet.service';
 
 
 export interface Pet {
@@ -23,4 +24,25 @@ export class AppComponent {
   title = 'petSPA';
   displayedColumns: string[] = ['id', 'name', 'type', 'edit', 'delete'];
   dataSource = PET_DATA;
+
+  pets: any[];
+  loadedPets: any;
+  constructor(private petService: PetService) { }
+  ngOnInit(){
+    this.loadAllPets();  
+  }
+  getId(event){
+    console.log(event);
+  }
+
+  private loadAllPets() {
+    this.petService.getPets().pipe().subscribe(loadedPets => { 
+        this.loadedPets = loadedPets;
+        this.pets = this.loadedPets.results;
+        console.log(this.pets);
+    },
+    (err) =>{
+        alert("Ooooops! Something went wrong, please reload the page");
+    });
+  }
 }

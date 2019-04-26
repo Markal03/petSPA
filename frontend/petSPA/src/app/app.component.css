@@ -9,5 +9,13 @@ table {
 }
 
 .spacer {
-    height: 100px;
+    height: 50px;
+}
+
+.mat-header-cell {
+    text-align: center;
+}
+
+.addButton {
+    align-self: center;
 }

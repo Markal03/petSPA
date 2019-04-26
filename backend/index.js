@@ -2,6 +2,7 @@ const express = require('express');
 const db = require('./app/controllers/database');
 const app = express();
 
+require('./config/express')(app);
 require('./config/routes')(app);
 
 function listen() {

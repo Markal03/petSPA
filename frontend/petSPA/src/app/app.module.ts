@@ -11,6 +11,8 @@ import { MatTableModule} from '@angular/material/table';
 import { CdkColumnDef } from '@angular/cdk/table';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PetService } from './_services/pet.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatListModule,
@@ -27,7 +30,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatTableModule,
     MatButtonModule
   ],
-  providers: [CdkColumnDef],
+  providers: [
+    CdkColumnDef,
+    PetService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
