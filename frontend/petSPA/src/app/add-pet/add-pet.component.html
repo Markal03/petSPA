@@ -1,3 +1,28 @@
-<p>
-  add-pet works!
-</p>
+<h2 mat-dialog-title>Add a new pet</h2>
+<form [formGroup]="newPetForm" (ngSubmit)="submit(newPetForm)">
+<mat-dialog-content>
+    <mat-form-field>
+        <input matInput placeholder="Pet ID" formControlName="id">
+    </mat-form-field>
+    <div *ngIf="submitted && f.id.errors" class="invalid-feedback">
+        <div *ngIf="f.id.errors.required">Id is required</div>
+    </div>
+    <mat-form-field>
+      <input matInput placeholder="Pet name" formControlName="name">
+  </mat-form-field>
+  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+      <div *ngIf="f.name.errors.required">Name is required</div>
+  </div>
+  <mat-form-field>
+    <input matInput placeholder="Pet type" formControlName="type">
+</mat-form-field>
+<div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+    <div *ngIf="f.type.errors.required">Type is required</div>
+</div>
+</mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button type="submit">Add</button>
+    <button mat-button type="button" mat-dialog-close>Cancel</button>
+  </mat-dialog-actions>
+</form>

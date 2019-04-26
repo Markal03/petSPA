@@ -5,14 +5,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DetailsComponent } from './details/details.component';
 import { AddPetComponent } from './add-pet/add-pet.component';
-import {MatListModule } from '@angular/material/list';
-import { MatLineModule } from '@angular/material/core';
-import { MatTableModule} from '@angular/material/table';
+import { MatLineModule, MatRippleModule } from '@angular/material/core';
 import { CdkColumnDef } from '@angular/cdk/table';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PetService } from './_services/pet.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import {
+  MatDatepickerModule,
+  MatDialogModule,
+  MatInputModule, MatListModule, MatPaginatorModule, MatProgressSpinnerModule, MatSelectModule, MatSidenavModule,
+  MatSortModule,
+  MatTableModule,
+  MatToolbarModule,
+  MatFormFieldModule,
+  MatSnackBar,
+  MatSnackBarModule
+} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -28,12 +39,25 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatLineModule,
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSortModule,
+    MatToolbarModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   providers: [
     CdkColumnDef,
     PetService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddPetComponent]
 })
 export class AppModule { }

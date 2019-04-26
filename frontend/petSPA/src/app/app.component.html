@@ -36,7 +36,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <div class="spacer"></div>
-    <button class="addButton" mat-fab color="primary"><i class="material-icons">add</i></button>
+    <button class="addButton" mat-fab color="primary" (click)="openDialog()"><i class="material-icons">add</i></button>
 </div>
 
 <router-outlet></router-outlet>

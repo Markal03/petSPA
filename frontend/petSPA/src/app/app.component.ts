@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { PetService } from './_services/pet.service';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { AddPetComponent } from './add-pet/add-pet.component';
 
 
 export interface Pet {
@@ -14,6 +16,7 @@ const PET_DATA: Pet[] = [
   {id: '3', name: 'Pet3', type: "hamster"}
 ];
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -27,10 +30,30 @@ export class AppComponent {
 
   pets: any[];
   loadedPets: any;
-  constructor(private petService: PetService) { }
+  constructor(private petService: PetService, private dialog: MatDialog) { }
+
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+        id: 1,
+        title: 'Add a new Pet'
+    };
+
+    this.dialog.open(AddPetComponent, dialogConfig);
+    
+    this.dialog.afterAllClosed.subscribe(() => {
+      this.loadAllPets();
+    }) 
+}
+
   ngOnInit(){
     this.loadAllPets();  
   }
+
   getId(event){
     console.log(event);
   }
@@ -38,8 +61,9 @@ export class AppComponent {
   private loadAllPets() {
     this.petService.getPets().pipe().subscribe(loadedPets => { 
         this.loadedPets = loadedPets;
-        this.pets = this.loadedPets.results;
-        console.log(this.pets);
+        this.dataSource = this.loadedPets.results;
+        //this.pets = this.loadedPets.results;
+        console.log(this.dataSource);
     },
     (err) =>{
         alert("Ooooops! Something went wrong, please reload the page");
