@@ -2,9 +2,9 @@
 
 **Required tools**:
 
-* _Angular 7.1.4
-* _Node 8.11.3
-* _MySQL Community Server 8.0.13
+* _Angular 7.1.4_
+* _Node 8.11.3_
+* _MySQL Community Server 8.0.13_
 
 ### Installation
 
