@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PetService } from './_services/pet.service';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatSnackBar } from '@angular/material';
 import { AddPetComponent } from './add-pet/add-pet.component';
 
 
@@ -30,7 +30,7 @@ export class AppComponent {
 
   pets: any[];
   loadedPets: any;
-  constructor(private petService: PetService, private dialog: MatDialog) { }
+  constructor(private snackBar: MatSnackBar, private petService: PetService, private dialog: MatDialog) { }
 
   openDialog() {
     const dialogConfig = new MatDialogConfig();
@@ -58,11 +58,26 @@ export class AppComponent {
     console.log(event);
   }
 
+  private deletePet(i){
+    let pet = this.dataSource[i];
+      this.petService.deletePet(pet.id).subscribe(() => {
+
+        this.snackBar.open('Pet Added Correctly', 'Undo', {
+          duration: 3000
+        });
+
+        this.loadAllPets();
+      },
+      (err) => {
+        console.log(err);
+        alert("Ooooops! Something went wrong, pet not deleted");
+      })
+    }
+
   private loadAllPets() {
     this.petService.getPets().pipe().subscribe(loadedPets => { 
         this.loadedPets = loadedPets;
         this.dataSource = this.loadedPets.results;
-        //this.pets = this.loadedPets.results;
         console.log(this.dataSource);
     },
     (err) =>{

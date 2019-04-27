@@ -18,4 +18,10 @@ export class PetService {
     const httpOptions = {headers: new HttpHeaders({'Content-Type':  'application/json'})};
     return this.http.post('http://localhost:3000/addPet', body, httpOptions);
   }
+
+  deletePet(id) {
+    const httpOptions = {headers: new HttpHeaders({'Content-Type':  'application/json'})};
+    let url = "http://localhost:3000/deletePet/" + id;
+    return this.http.delete(url, httpOptions);
+  }
 }
