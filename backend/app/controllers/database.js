@@ -94,6 +94,29 @@ exports.savePet = async (pet) => {
     }
 };
 
+exports.updatePet = (pet) => {
+    try {
+        let updatePetQueryString = `
+            UPDATE pets 
+            SET
+                name = ?,
+                type = ?
+            WHERE id = ?
+        `;
+        connection.query(updatePetQueryString, [pet.name, pet.type, pet.id], (error, result, fields) => {
+            if (error) {
+                console.log(error);
+                return false;
+            }
+            console.log("Pet correctly edited");
+            return true;
+        });
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+};
+
 exports.findExistingPet = (id) => {
     return new Promise((resolve, reject) => {
         let findPetString = `SELECT * 
@@ -130,22 +153,3 @@ exports.deletePet = (id) => {
     });
 };
 
-exports.updatePet = (pet) => {
-    return new Promise((resolve, reject) => {
-        let updatePetQueryString = `
-            UPDATE pets 
-            SET
-                id = ?,
-                name = ?,
-                type = ?
-            WHERE id = ?
-        `;
-        connection.query(updatePetQueryString, [pet.id, pet.name, pet.type], (error, result, fields) => {
-            if (error) {
-                console.log(error);
-                return reject(error);
-            }
-            return resolve(result);
-        });
-    });
-};

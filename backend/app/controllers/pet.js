@@ -47,7 +47,7 @@ exports.addPet = async (req, res, next) => {
         };
 
         if (db.savePet(pet)) {
-            res.status(200).send({message: "Pet added correctly"})
+            res.status(200).send({message: "Pet added correctly"});
         } else {
             res.status(400).send({message: "There was an error in adding the pet"});
         }
@@ -57,13 +57,14 @@ exports.addPet = async (req, res, next) => {
     }
 };
 
-exports.updatePet = async (req, pet) => {
+exports.updatePet = async (req, res) => {
+    let pet = req.body;
     try {
-        let infosResult = await db.updatePet(pet);
-        if (!infosResult) {
-            return false;
+        if (db.updatePet(pet)) {
+                res.status(400).send({message: "There was an error in editing the pet"});
+        } else {
+            res.status(200).send({message: "Pet edited correctly"});
         }
-        return true;
     } catch (error) {
         console.log(error);
         return res.status(400).send({ message: "Database error", error: error});

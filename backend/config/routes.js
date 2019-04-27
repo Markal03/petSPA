@@ -8,7 +8,7 @@ module.exports = (app) => {
 
     app.post('/addPet', PetController.addPet);
 
-    app.post('/updatePet/:pet', PetController.updatePet);
+    app.post('/updatePet', PetController.updatePet);
 
     app.delete('/deletePet/:id', PetController.deletePet);
 }

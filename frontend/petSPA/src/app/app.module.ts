@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PetService } from './_services/pet.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditPetComponent } from './edit-pet/edit-pet.component';
 
 import {
   MatDatepickerModule,
@@ -25,11 +26,13 @@ import {
   MatSnackBarModule
 } from "@angular/material";
 
+
 @NgModule({
   declarations: [
     AppComponent,
     DetailsComponent,
-    AddPetComponent
+    AddPetComponent,
+    EditPetComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,6 @@ import {
     PetService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddPetComponent]
+  entryComponents: [AddPetComponent, EditPetComponent]
 })
 export class AppModule { }

@@ -11,10 +11,11 @@ import { PetService } from '../_services/pet.service';
 })
 export class AddPetComponent implements OnInit {
   newPetForm: FormGroup;
-  description:string;
+  description: string;
   submitted = false;
 
-  constructor(private snackBar: MatSnackBar,private petService: PetService, private formBuilder: FormBuilder, private dialogRef: MatDialogRef<AddPetComponent>, @Inject(MAT_DIALOG_DATA) data) {
+  constructor(private snackBar: MatSnackBar,private petService: PetService, private formBuilder: FormBuilder,
+    private dialogRef: MatDialogRef<AddPetComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.description = data.description;
   }
 
@@ -28,7 +29,6 @@ export class AddPetComponent implements OnInit {
 get f() { return this.newPetForm.controls; }
 
   submit(newPetForm){
-    console.log(newPetForm);
     this.submitted = true;
 
     if (this.newPetForm.invalid) {
